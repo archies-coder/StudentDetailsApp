@@ -1,0 +1,35 @@
+.card {
+    height: 100%;
+    font: 20px/150% 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card .avatar-container {
+    background: url(../assets/ico/male-icon.png);
+    margin-left: 32%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card .view-details-link {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.card .view-details-link:hover {
+    color: aliceblue;
+}
+
+.card .view-details-link button {
+    background-color: #5858ff;
+    color: aliceblue;
+    border: 0;
+    font-size: 20px !important;
+    margin-top: 20px;
+}
+/*# sourceMappingURL=Student.css.map */

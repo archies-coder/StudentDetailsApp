@@ -1,0 +1,46 @@
+.details-img {
+    background: url(../assets/ico/male-icon.png) no-repeat;
+    height: 300px;
+    margin-left: 100px !important;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.details-link {
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #5858ff;
+}
+
+.details-link:hover {
+    color: aliceblue;
+}
+
+.details-link button {
+    color: aliceblue;
+    border: 0;
+    width: 100px;
+    background-color: #5858ff;
+}
+
+.btn-arrow {
+    color: aliceblue;
+    border: 0;
+    background-color: #5858ff;
+    height: inherit;
+    font-size: 24px;
+    width: 50px;
+}
+
+.left {
+    position: absolute;
+    left: 10px;
+}
+
+.right {
+    position: absolute;
+    right: 10px;
+}
+/*# sourceMappingURL=Details.css.map */
