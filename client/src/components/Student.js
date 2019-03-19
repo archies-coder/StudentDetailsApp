@@ -14,7 +14,7 @@ export default class Student extends Component {
           </div>
           {name}
           <Link to='/details' className="view-details-link">
-            <button className='font-italic' >
+            <button className='font-italic bg-dark text-monospace text-white'>
               View Details
             </button>
           </Link>

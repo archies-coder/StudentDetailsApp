@@ -1,10 +1,5 @@
 const { buildSchema } = require('graphql');
 
-//Mongoose Model
-const studentModel = require('./../models/student');
-// const { makeExecutableSchema } = require('graphql-tools');
-// //Types
-
 // const StudentType = new GraphQLObjectType({
 //   name: 'Student',
 //   fields: ()=>({
@@ -74,9 +69,7 @@ const studentModel = require('./../models/student');
 //     },
 //   }
 // });
-
 //TypeDefs
-
 // const typeDefs = [`
 //
 //   type Student {
@@ -130,8 +123,14 @@ query: RootQuery bt we need resolvers for subqueries like name and email*/
 //   }
 // };
 
-
 module.exports= buildSchema(`
+
+type User {
+  name: String!
+  email: String!
+  password: String!
+}
+
 type Student {
    name : String
    email: String
@@ -140,6 +139,7 @@ type Student {
  type RootQuery {
   student:  Student
   students: [Student!]
+  user: User
  }
 
  type StudUser{
@@ -147,14 +147,33 @@ type Student {
    name: String!
    email: String!
  }
+ 
+ type UserRes{
+  _id: ID!
+  name: String!
+  email: String!
+  password: String
+ }
 
  input NewInputData {
     name: String!
     email: String!
+ } 
+ 
+ input deleteStudentInput {
+    email: String!
  }
+ 
+  input UserDataInput {
+    name: String!
+    email: String!
+    password: String!
+  } 
 
  type RootMutation {
    addStudent(userInput: NewInputData): StudUser!
+   deleteStudent(userInput: deleteStudentInput) : StudUser!
+   createUser(userInput: UserDataInput): UserRes!
  }
 
  schema {

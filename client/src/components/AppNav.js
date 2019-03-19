@@ -42,6 +42,11 @@ export default class AppNav extends Component {
                     </Link>
                 </NavItem>
                 <NavItem>
+                    <Link className='nav-link' to='/register'>
+                      Register
+                    </Link>
+                </NavItem>
+                <NavItem>
                     <Link className='nav-link' to='/login'>
                       Login
                     </Link>

@@ -1,7 +1,8 @@
-.App {
+html,body{
+    height: 100%;
+    font-family: 'Numans', sans-serif, Courier, "Courier New", "Palatino Linotype","Franklin Gothic Medium";
+    background-color: rgb(222, 228, 235);
     text-align: center;
-    background-color: aliceblue;
 }
-
 
 

@@ -3,12 +3,13 @@ import {Switch, Route} from "react-router-dom";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //Components
-import AppNav from './components/AppNav'
+import AppNav from './components/AppNav';
 import AppLogin from "./components/Login";
 import StudentList from './components/StudentList';
 import StudentDetails from './components/Details'
 import Home from './components/Home';
-import AddStudent from './components/AddStudent'
+import AddStudent from './components/AddStudent';
+import AppRegister from "./components/Register";
 //Apollo
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from "react-apollo";
@@ -29,6 +30,7 @@ class App extends Component {
                 <Route exact path='/add' component={AddStudent}/>
                 <Route path='/details' component={StudentDetails}/>
                 <Route path='/login' component={AppLogin}/>
+                <Route path='/register' component={AppRegister}/>
             </Switch>
         </ApolloProvider>
     );

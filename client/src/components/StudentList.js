@@ -25,8 +25,8 @@ const StudentList = (props) => {
   };
   return(
     <React.Fragment>
-      <div className="py-5">
-        <div className="container">
+      <div>
+        <div className="container pb-2">
           <div style={gridStyle}>
             {
               getStuds()
