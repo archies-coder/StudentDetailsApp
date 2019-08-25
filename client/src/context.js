@@ -1,52 +1,22 @@
-import React, { Component } from 'react';
-import { Students, detailProduct } from './Data'
+import React, { Component } from 'react'
 
-const StudentContext = React.createContext();
+const AuthContext = React.createContext();
+export default class AuthProvider extends Component {
+    constructor(){
+        super();
+        this.state = {
 
-class StudentProvider extends Component {
-    state={
-        students: [],
-        SampleDetail: detailProduct
-    };
-
-    componentDidMount(){
-        this.setStudents();
+        }
     }
-
-    setStudents = () =>{
-        let tempStudents = [];
-        Students.forEach(item => {
-            const singleItem = { ...item };
-            tempStudents = [ ...tempStudents,singleItem ];
-        });
-        this.setState(()=>{
-            return { students : tempStudents };
-        });
-    };
-
-    getStudent = id =>{
-        return this.state.students.find(item=>item.id===id);
-    };
-
-    handleDetail = id =>{
-        const stud = this.getStudent(id);
-        this.setState(()=>{
-            return { SampleDetail : stud };
-        })
-    };
-
     render() {
         return (
-            <StudentContext.Provider value={{
-                state: this.state,
-                handleDetail: this.handleDetail,
-            }}>
+            <AuthContext.Provider value = {{state: this.state}}>
                 {this.props.children}
-            </StudentContext.Provider>
+            </AuthContext.Provider>
         )
     }
 }
 
-const StudentConsumer = StudentContext.Consumer;
+const AuthConsumer = AuthContext.Consumer;
 
-export { StudentProvider, StudentConsumer };
+export { AuthProvider, AuthConsumer };
