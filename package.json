@@ -15,7 +15,6 @@
     "apollo-boost": "^0.3.1",
     "apollo-client": "^2.5.1",
     "apollo-server": "^2.4.8",
-    "bcrypt": "*",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.4",

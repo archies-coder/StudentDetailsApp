@@ -1,27 +1,27 @@
 const studentModel = require("./../models/student");
 const userModel = require("./../models/users");
 const validator = require("validator");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const _ = require("lodash");
 const { JWT_SECRET } = require("../config/keys");
 
 module.exports = {
-  student: ({name}, {req, res}) => {
+  student: ({ name }, { req, res }) => {
     if (!req.userId) {
       throw new Error("Unauthenticated");
     }
-    return studentModel.findOne({name: name});
+    return studentModel.findOne({ name: name });
   },
 
-  students: (args, {req}) => {
+  students: (args, { req }) => {
     if (!req.userId) {
       throw new Error("Unauthenticated");
     }
     return studentModel.find({});
   },
 
-  addStudent: async function({ userInput }, {req}) {
+  addStudent: async function ({ userInput }, { req }) {
     if (!req.userId) {
       throw new Error("Unauthenticated");
     }
@@ -38,7 +38,7 @@ module.exports = {
     return { ...createdUser._doc, UserId };
   },
 
-  deleteStudent: async ({ userInput }, {req}) => {
+  deleteStudent: async ({ userInput }, { req }) => {
     if (!req.userId) {
       throw new Error("Unauthenticated");
     }
@@ -85,34 +85,31 @@ module.exports = {
     return { ...createdUser._doc, UserId };
   },
 
-  login: async ({ email, password }, {req, res, next}) => {
+  login: async ({ email, password }, { req, res, next }) => {
     const existingUser = await userModel.findOne({ email: email });
     if (!existingUser) {
       throw new Error("No user with that email");
     }
     const valid = await bcrypt.compare(password, existingUser.password);
     if (!valid) {
-      res.status(401).send()
-      return next()
+      return res.status(401).send()
+
     }
     const accessToken = jwt.sign(
       { userId: existingUser.id, email: existingUser.email },
       JWT_SECRET,
       { expiresIn: "15min" }
     );
-    res.cookie('ssid', accessToken,{
-      maxAge: 1000*60*60*24*7,
+    console.log('in login resolver')
+    return res.cookie('ssid', accessToken, {
+      maxAge: 1000 * 60 * 60 * 24 * 365,
       httpOnly: true
-    })
-    return {
-      userId: existingUser.id,
-      accessToken
-    };
+    }).send({ userId: existingUser.id, accessToken })
   },
 
-  logout: ({email},{res})=>{
+  logout: ({ email }, { res }) => {
     const existingUser = userModel.findOne({ email: email });
-    return{
+    return {
       userId: existingUser.userId
     }
   }

@@ -41,7 +41,7 @@ mongoose
 //Cookie-Parser
 app.use(cookieParser());
 
-app.use(isAuth);
+// app.use(isAuth);
 
 //Middleware
 // app.use(async (req, res, next) => {

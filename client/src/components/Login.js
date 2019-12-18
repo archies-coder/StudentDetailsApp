@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import {AuthConsumer} from '../context';
+
 
 class AppLogin extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class AppLogin extends Component {
   }
 
 
-  handleLogin = e => {
+  handleLogin = (context, e) => {
     e.preventDefault();
     const email = this.emailEl.current.value;
     const password = this.passwordEl.current.value;
@@ -32,7 +34,7 @@ class AppLogin extends Component {
 
     fetch("http://localhost:5000/graphql", {
       method: "POST",
-      body: JSON.stringify(loginRequest),
+      body: JSON.stringify(loginRequest), credentials: 'include',
       headers: {
         "Content-Type": "application/json",
         "Accept":"application/json"
@@ -47,10 +49,10 @@ class AppLogin extends Component {
       .then(resData => {
         console.log(resData)
         this.setState({
-          token: resData.data.login.accessToken,
-          userId: resData.data.login.userId
+          token: resData.accessToken,
+          userId: resData.userId
         })
-        localStorage.setItem('token', resData.data.login.accessToken)
+        this.props.history.push('/list')
       })
       .catch(err=>console.log(err)
       );
@@ -59,8 +61,9 @@ class AppLogin extends Component {
   render() {
 
     return (
-      <React.Fragment>
-        <div className="login-container">
+      <AuthConsumer>{
+        context => (
+          <div className="login-container">
           <div className="d-flex justify-content-center h-100">
             <div className="card login-card">
               <div className="card-header">
@@ -78,7 +81,7 @@ class AppLogin extends Component {
                 </div>
               </div>
               <div className="card-body">
-                <form onSubmit={this.handleLogin}>
+                <form onSubmit={e=>this.handleLogin(context,e)}>
                   <div className="input-group form-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">
@@ -131,7 +134,10 @@ class AppLogin extends Component {
             </div>
           </div>
         </div>
-      </React.Fragment>
+        )
+      }
+        
+      </AuthConsumer>
     );
   }
 }

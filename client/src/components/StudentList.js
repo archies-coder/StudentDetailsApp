@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Student from "./Student";
 // // import { graphql } from "react-apollo";
-// import AuthContext from "../context";
+import {AuthConsumer} from "../context";
 
 const gridStyle = {
   display: "grid",
@@ -24,7 +24,7 @@ export default class StudentList extends Component{
   componentDidMount = () => {
     const getStudentsQuery = {
       query: `
-      {
+      {           
           students {
               name
           }
@@ -47,14 +47,15 @@ export default class StudentList extends Component{
       })
       .then(resdata => {
         console.log(resdata)
-      this.setState({data: resdata.data.students})
+        this.setState({data: resdata.data.students})
       })
       .catch(err => console.log(err))
   }
   render(){
   return (
-    <React.Fragment>
-          <div>
+    <AuthConsumer>{
+      context => {
+        return (context.state.isAuth) ? <div>
             <div className="container pb-2">
               <div style={gridStyle}>
                 {
@@ -65,8 +66,12 @@ export default class StudentList extends Component{
                 }
               </div>
             </div>
-          </div>
-    </React.Fragment>
+          </div> : null
+      }
+        
+    }
+          
+    </AuthConsumer>
   );
   }
 }

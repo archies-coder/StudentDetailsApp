@@ -15,20 +15,16 @@ import AppRegister from "./components/Register";
 
 class App extends Component {
   state = {
-    token: null,
+    token: 'ahe token',
     userId: null
   };
 
-  componentDidMount = () => {
-    if(localStorage.token){
-      this.setState({token: localStorage.token})
-    }
-    console.log(this.state.token)
-  }
-
-  componentWillUnmount = () => {
-    localStorage.clear();
-  }
+  // componentDidMount = () => {
+  //   if(localStorage.token){
+  //     this.setState({token: localStorage.token})
+  //   }
+  //   console.log(this.state.token)
+  // }
 
 
   render() {
