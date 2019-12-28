@@ -1,17 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {BrowserRouter as Router } from "react-router-dom";
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { StudentProvider} from "./context";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { ApolloProvider } from "react-apollo";
+import { ApolloClient } from "apollo-client";
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+import { AuthProvider } from './context'
+
+const link = new HttpLink({
+  uri: "http://localhost:5000/graphql",
+  // Additional fetch options like `credentials` or `headers`
+  credentials: 'include',
+});
+// Apollo client setup
+const client = new ApolloClient({
+  link: link,
+  cache: new InMemoryCache()
+});
 
 ReactDOM.render(
-    <StudentProvider>
+  <ApolloProvider client = {client}>
+    <React.Fragment>
+      <AuthProvider>
+      <React.Fragment>
         <Router>
-            <App/>
-        </Router>
-    </StudentProvider>
-    , document.getElementById('root')
+          <App />
+      </Router>,
+      </React.Fragment>
+    </AuthProvider>
+    </React.Fragment>
+  </ApolloProvider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

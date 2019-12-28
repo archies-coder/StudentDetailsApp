@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Student.css';
 
 export default class Student extends Component {
@@ -13,11 +13,9 @@ export default class Student extends Component {
           <div className="avatar-container">
           </div>
           {name}
-          <Link to='/details' className="view-details-link">
-            <button className='font-italic bg-dark text-monospace text-white'>
+            <button className='font-italic btn-primary border-0 bg-dark text-monospace text-white view-details-link'>
               View Details
             </button>
-          </Link>
         </div>
       </React.Fragment>
     )
