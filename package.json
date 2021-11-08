@@ -22,7 +22,7 @@
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "express-session": "^1.16.2",
-    "graphiql": "^0.13.0",
+    "graphiql": "^1.4.7",
     "graphql": "^14.1.1",
     "graphql-server-express": "^1.4.0",
     "graphql-tag": "^2.10.1",
